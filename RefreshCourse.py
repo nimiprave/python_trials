@@ -48,8 +48,40 @@
 # print(first_tuple)
 
 #Sets & advanced Sets Operations
-first_set = {'red','blue','green'}
-second_set = { 'red','yellow','orange'}
+# first_set = {'red','blue','green'}
+# second_set = { 'red','yellow','orange'}
 
-print(first_set.difference(second_set))
-print(first_set.intersection(second_set))       
+# print(first_set.difference(second_set))
+# print(first_set.intersection(second_set))       
+
+
+
+#dictionary
+#allows you to store key/value pairs
+
+friend_ages= {
+    "Rolf" : 23,
+    "Adam" : 24,
+    "Suni" : 26
+
+}
+print(friend_ages["Rolf"])
+print(f"Age of Rolf: { friend_ages['Rolf'] }")
+#print(f"Age of Ram: { friend_ages['Ram'] }")
+
+#adding to a dictionary
+print(friend_ages.items( ))
+print(friend_ages.values( ))
+
+#dictionary & tuples
+friends = (
+    {"name" : "Ram" , "age" : 24},
+    {"name" : "Nimi" , "age" : 25},
+    {"name" : "Simi" , "age" : 26},
+
+)
+
+print(friends[0]["name"])
+print(friends[0]["age"])
+
+
