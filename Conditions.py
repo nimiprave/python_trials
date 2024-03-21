@@ -14,14 +14,20 @@
 
 
 #Another example
-friends = ["Rolf", "Bob", "Anne"]
-family = ["Jen","Charlie"]
+# friends = ["Rolf", "Bob", "Anne"]
+# family = ["Jen","Charlie"]
 
-user_name = input( "Entery your name: ")
+# user_name = input( "Entery your name: ")
 
-if user_name in family:
-    print(f"Hello Family! {user_name}")
-elif user_name in friends:
-    print(f"Hello Friend - {user_name}")
-else:
-    print("I don't know you")
+# if user_name in family:
+#     print(f"Hello Family! {user_name}")
+# elif user_name in friends:
+#     print(f"Hello Friend - {user_name}")
+# else:
+#     print("I don't know you")
+
+
+
+
+ #While Loops
+       
