@@ -33,7 +33,7 @@
 
 
 #break and continue
-cars = ["ok","ok","ok","ok","ok","ok","ok"]
+cars = ["ok","ok","ok","ok","faulty","ok","ok"]
 for status in cars:
     if status == "faulty":
         break
