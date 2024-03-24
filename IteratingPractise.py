@@ -19,4 +19,13 @@
 
 
 
-#
+#working with dictionaries
+friends_dictionary = { "Nirmal" : 22, 
+                        "Shyam" : 20,
+                       "Vaichu" :  13 
+                      }
+for name in friends_dictionary:
+    print(f"Name : {name} ")
+    
+for name,age in friends_dictionary.items():
+    print(f"Name : {name} and age is {age}")
