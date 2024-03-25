@@ -16,5 +16,4 @@ print(common_friends)
 present_friends = [
     name.title() for name in friends_lower if name in guests_lower
 ]
-
 print(present_friends)
