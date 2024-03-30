@@ -6,7 +6,19 @@ def sayHello():
 sayHello()
 
 
-# does python support hoisting -- NO it does not
+#does python support hoisting -- NO it does not
 global x
 x = "Global variable"
 print(x)
+
+#method definition with the arguments, default arguments, named parameters
+def addition( x, y):
+    return x+y
+print(addition(10,4))
+
+def multipicator(x, y=3):
+    return x * y
+print(multipicator(5))
+print(multipicator(6,6))
+
+
