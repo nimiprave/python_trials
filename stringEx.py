@@ -19,4 +19,4 @@ for letter in lines:
 if 'this' in lines:
     print("this is found")
 
-
+# string is an array in python
