@@ -6,7 +6,7 @@ except NameError:
     print("Faced Runtime Error")
 except:
     print("Any Other kind of error")
-finally:
+            finally:
     print("This block is executed after the try except block is called")    
 
 
