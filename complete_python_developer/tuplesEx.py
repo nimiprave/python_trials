@@ -1,0 +1,10 @@
+tuples_first = (9,10,11)
+print(tuples_first)
+print(tuples_first[0])  
+print(len(tuples_first))
+if 9 in tuples_first:
+    print('9 is available')
+print(tuples_first.count(9))
+tuples_first.index(9)
+second_tuple = tuples_first.__add__((12,13,14))
+print(second_tuple)
