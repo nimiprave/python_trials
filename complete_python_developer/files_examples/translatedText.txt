@@ -1,4 +1,4 @@
-これはテスト目的のペイロードファイルです。 
-これは2行目です。 
-これは3行目です。
-これは4行目です。
+Il s'agit d'un fichier de charge utile à des fins de test. 
+Ceci est une deuxième ligne, 
+C'est une troisième ligne.
+Il s'agit d'une quatrième ligne.
