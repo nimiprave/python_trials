@@ -1,0 +1,4 @@
+1. install the python virtual environment -- by running the command : python3 -m venv .venv
+Activate the virtual environment by running the script from command line: venv/scripts/activate
+create the requirements.txt file that has all the tools needed for the project. 
+install the requirments: pip install -r requirements.txt
