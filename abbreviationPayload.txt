@@ -1,0 +1,36 @@
+Please abbreviate the sentences in the payload section. Please use the guidelines and examples mentioned in the guidelines section. Please provide the results  in the key, value JSON format. 
+
+
+
+###
+Guidelines:
+
+When naming translation keys, starting with a clear and consistent system will make it easy to organize and locate your keys as your project grows. Here are some tips to help you get started:
+
+Naming convention: The first step to naming translation keys is to decide on a naming convention that will work for your project. A naming convention is a set of rules that define how translation keys should be named. A good naming convention should be easy to understand and follow consistently.
+
+Casing: Casing is how letters are capitalized in a word. Using a consistent casing convention makes it easier to identify and troubleshoot issues related to translations. You can, for example, use camelCase, snake_case, or PascalCase.
+Key categories: Once you have your naming convention in place, it's crucial to identify the different categories of keys that you will need. Think about how you want to organize your keys and create a list of categories that make sense for your project. For example, you can split the keys based on where they appear in the application – if you have a web application, you may want to have separate categories for keys that appear on the homepage, in the login/sign-up flow, and the user profile.
+
+Nesting: Nesting is the process of organizing translation keys into a hierarchy. This helps you organize your keys into logical groups and makes finding the keys easier. For example, you can split the keys based on the previously mentioned categories.
+
+Keep it simple: While creating a consistent and organized system for naming translation keys is necessary, it's equally important to keep things simple. Avoid using overly complex naming conventions or structures that are difficult to understand, as this can lead to confusion and errors down the line.
+
+Good Example:
+Name	form.name_person
+Name	form.name_company
+
+Bad Example:
+Name	form.name_person
+Name	form.name_company
+
+
+###
+
+Payload:
+
+Manage Supplier Master Data
+Manage Business Partners - Central Governance
+Look Up Reference Data for Business Partners
+
+###

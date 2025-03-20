@@ -2,13 +2,15 @@ from phi.agent import Agent
 from phi.tools.duckduckgo import DuckDuckGo
 from phi.model.groq import Groq
 from dotenv import load_dotenv
+from phi.model.google import Gemini
 import os
 
 load_dotenv()
 # Web Search Agent
 web_agent = Agent(
     name="Web Agent",
-    model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
+    # model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
+    model=Gemini(id="gemini-1.5-flash"),
     tools=[DuckDuckGo()],
     instructions=["Always include sources"],
     show_tool_calls=True,

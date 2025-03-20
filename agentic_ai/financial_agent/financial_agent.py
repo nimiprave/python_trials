@@ -14,7 +14,10 @@ load_dotenv()
 web_search_agent = Agent(
     name='web_search_agent',
     role='Search the web for the information',
-    model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
+    # model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
+    # model=Groq(id="llama-3.3-70b-versatile"),
+    model=Groq(id="llama-3.2-90b-vision-preview"),
+    # model=Gemini(id="gemini-1.5-flash"),
     tool=DuckDuckGo(),
     instructions=['Always include the source'],
     show_tool_calls=True,
@@ -26,7 +29,9 @@ web_search_agent = Agent(
 # create financial agent
 finance_agent = Agent(
     name='Finance AI agent',
-    model=Gemini(id="gemini-1.5-flash"),
+    # model=Gemini(id="gemini-1.5-flash"),
+    # model=Groq(id="llama-3.3-70b-versatile"),
+    model=Groq(id="llama-3.2-90b-vision-preview"),
     # model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
     tools=[YFinanceTools(stock_price=True, analyst_recommendations=True,
                          stock_fundamentals=True, company_news=True, company_info=True)],
@@ -39,7 +44,9 @@ finance_agent = Agent(
 # multi agent application
 multi_ai_agent = Agent(
     team=[web_search_agent, finance_agent],
-    model=Gemini(id="gemini-1.5-flash"),
+    # model=Gemini(id="gemini-1.5-flash"),
+    # model=Groq(id="llama-3.3-70b-versatile"),
+    model=Groq(id="llama-3.2-90b-vision-preview"),
     instructions=["Use the web search agent to find information about the company and the financial agent to find information about the stock.",
                   "Use table to display the data"],
     show_tool_calls=True,
