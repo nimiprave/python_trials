@@ -1,0 +1,12 @@
+{
+  "Interactions": [
+    {
+      "InteractionContactOrigin": "SAP_HYBRIS_CONSUMER",
+      "InteractionContactId": "20190628",
+      "CommunicationMedium": "WEB",
+      "InteractionType": "WEBSITE_REGISTRATION",
+      "InteractionTimeStampUTC": "2025-06-16T15:13:00",
+      "MarketingArea": "GLOBAL"
+    }
+  ]
+}

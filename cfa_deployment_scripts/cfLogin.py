@@ -42,7 +42,8 @@ def region_dictionary():
         "9": {"ap-prod": "https://api.cf.ap10.hana.ondemand.com"},
         "10": {"jp-prod": "https://api.cf.jp10.hana.ondemand.com"},
         "11": {"cn-prod": "https://api.cf.cn40.platform.sapcloud.cn"},
-        "12": {"ibc-cfa-dev-mta-provider": "https://api.cf.eu12-001.hana.ondemand.com"}
+        "12": {"ibc-cfa-dev-mta-provider": "https://api.cf.eu12-001.hana.ondemand.com"},
+        "13": {"ibc-joule-playground-hx618aom": "https://api.cf.eu12.hana.ondemand.com"}
     }
     return region_dict
 
@@ -74,5 +75,7 @@ if __name__ == "__main__":
 
     # login to the selected region
     cf_login(region_no)
-    print("Logged in successfully")
-    print("You can now use the cf commands")
+    console.print("Logged in successfully",
+                  style="bold green", highlight=True),
+    console.print("You can now use the cf commands",
+                  style="bold green", highlight=True)
