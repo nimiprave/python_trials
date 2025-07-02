@@ -115,7 +115,7 @@ def read_payload():
 # function to make a post call with the payload
 
 
-def post_payload():
+def _post_payload():
     # csrf tokaen
     token = get_xsrf_token_session()
     # payload
@@ -143,6 +143,36 @@ def post_payload():
     else:
         console.print(f"Response Error:  {response.content}")
 
+# post payload to the backend system
+
+
+def post_payload(body):
+    # csrf tokaen
+    token = get_xsrf_token_session()
+    # payload
+    console.print(f"Body: {body}")
+    # headers for the post request
+    headers = {
+        'Content-Type': 'application/json',
+        'x-csrf-token': token.get("token"),
+        'Cookie': token.get('cookie')
+    }
+
+    # make the post request
+    response = requests.post(
+        post_url,
+        auth=(user_name, password),
+        headers=headers,
+        data=json.dumps(body),
+        verify=False
+    )
+
+    if response.status_code == 201:
+        console.print("Payload posted successfully!", style="bold green")
+    else:
+        console.print(f"Response Error:  {response.content}")
+    return response
+
 # create payload from the UI dictionary object
 
 
@@ -166,13 +196,52 @@ def create_payload(ui_dictionary):
             ui_dictionary, ui_dictionary["InteractionTimeStampUTC"]))
 
     return payload
+
+# multiple contact ids payload
+
+
+def multiple_contactid_payload(ui_dictionary):
+    payload = {
+        "Interactions": []
+    }
+
+    multipleContactIds = ui_dictionary["InteractionContactIds"]
+    for contactid in multipleContactIds:
+        if ui_dictionary["interaction_count"] > 1:
+            # first element
+            payload["Interactions"].append(_create_interaction_contactid(
+                ui_dictionary, contactid, ui_dictionary["InteractionTimeStampUTC"]))
+            loop_index = 2
+            while (loop_index <= ui_dictionary["interaction_count"]):
+                future_time_stamp = get_timestamp_utc(
+                    ui_dictionary["input_date"], ui_dictionary["input_time"], loop_index - 1)
+                payload["Interactions"].append(_create_interaction_contactid(
+                    ui_dictionary, contactid, future_time_stamp))
+                loop_index += 1
+        else:
+            payload["Interactions"].append(_create_interaction_contactid(
+                ui_dictionary, contactid, ui_dictionary["InteractionTimeStampUTC"]))
+
+    return payload
+
+
 # create interaction
-
-
 def _create_interaction(ui_dictionary, time_stamp):
     interaction = {
         "InteractionContactOrigin": ui_dictionary["InteractionContactOrigin"],
         "InteractionContactId": ui_dictionary["InteractionContactId"],
+        "CommunicationMedium": ui_dictionary["CommunicationMedium"],
+        "InteractionType": ui_dictionary["InteractionType"],
+        "InteractionTimeStampUTC": time_stamp,
+        "MarketingArea": ui_dictionary["MarketingArea"]
+    }
+    return interaction
+
+
+def _create_interaction_contactid(ui_dictionary, contactid, time_stamp):
+    interaction = {
+        "InteractionContactOrigin": ui_dictionary["InteractionContactOrigin"],
+        "InteractionContactId": contactid,
         "CommunicationMedium": ui_dictionary["CommunicationMedium"],
         "InteractionType": ui_dictionary["InteractionType"],
         "InteractionTimeStampUTC": time_stamp,
@@ -189,6 +258,6 @@ def get_timestamp_utc(date, chosen_time, minutes):
 
 if __name__ == "__main__":
     # Example usage
-    # post_payload()
+    # _post_payload()
     read_payload()
     # get_xsrf_token()

@@ -2,18 +2,18 @@ import streamlit as st
 from datetime import datetime, timedelta, time
 import interactionApiRequest
 
+
+def post_payload(payload_body):
+    response = interactionApiRequest.post_payload(payload_body)
+    if response.status_code >= 200:
+        st.success(f"Payload posted successfully! with status code: {response.status_code}",
+                   icon="✅")
+    else:
+        st.error(f"Response Error:  {response.content}", icon="🚨")
+
+
 # Show the UI fields .
 st.markdown("# Create Api Interaction Payload and Post to the backend System")
-
-# {
-#   "InteractionContactOrigin": "SAP_HYBRIS_CONSUMER",
-#   "InteractionContactId": "20190628",
-#   "CommunicationMedium": "WEB",
-#   "InteractionType": "WEBSITE_REGISTRATION",
-#   "InteractionTimeStampUTC": "2025-06-16T15:13:00",
-#   "MarketingArea": "GLOBAL"
-# }
-# payload dictionary
 payload = {}
 
 # Section for choosing the payload
@@ -22,16 +22,20 @@ mainContainer.header("Choose the Payload Type")
 with mainContainer:
     # Capture Interaction Contact ID
     iContactOrigin = st.text_input(label="Interaction Contact Origin",
-                                   value="SAP_HYBRIS_CONSUMER",
+                                   value="SAP_C4C_BUPA",
                                    help="The origin of the interaction contact, e.g., SAP_HYBRIS_CONSUMER")
     payload["InteractionContactOrigin"] = iContactOrigin
+    default_contactIds = ['20250616', '20250617']
+    iContactIds = st.multiselect(
+        label="Multiple Contact ID", options=default_contactIds)
+    payload["InteractionContactIds"] = iContactIds
 
-    iContactId = st.text_input(label="Interaction Contact ID",
-                               value="20190628",
-                               help="The unique identifier for the interaction contact, e.g., 20190628")
-    payload["InteractionContactId"] = iContactId
+    # iContactId = st.text_input(label="Interaction Contact ID",
+    #                            value="20250616",
+    #                            help="The unique identifier for the interaction contact, e.g., 20190628")
+    # payload["InteractionContactId"] = iContactId
 
-    default_comm_medium = interactionApiRequest.load_comm_mediums().index("EMAIL")
+    default_comm_medium = interactionApiRequest.load_comm_mediums().index("WEB")
     communicationMedium = st.selectbox(label="Communication Medium",
                                        options=interactionApiRequest.load_comm_mediums(),
                                        index=default_comm_medium,
@@ -54,7 +58,7 @@ with mainContainer:
     # Capture Interaction Time Stamp
    # Section for Experimenting.
     internalContainer = st.container(border=True)
-    internalContainer.header("Capture Interaction Time Stamp")
+    internalContainer.header("Select the Time Stamp")
     with internalContainer:
         # Capture date
         date = st.date_input("Select Date")
@@ -79,10 +83,13 @@ with mainContainer:
                                         help="Interactions created with Timestamp seconds apart")
     payload["interaction_count"] = interaction_count
 
-    st.write("Interaction Time Stamp (UTC):", interactionTimeStampUTC)
-    incremented_time = (datetime.combine(
-        date, chosen_time) + timedelta(minutes=1)).time()
-    incrementedtime_utc = datetime.combine(date, incremented_time)
-    st.write("InteractionTime Incremented by 1 minute: ",
-             incrementedtime_utc.isoformat())
-    st.write(interactionApiRequest.create_payload(payload))
+    # Payload Section:
+    with st.expander("Payload Generated", expanded=False):
+        payload_container = st.container(border=True)
+        payload_container.header("Payload Generated")
+        # payload_body = interactionApiRequest.create_payload(payload)
+        payload_body = interactionApiRequest.multiple_contactid_payload(
+            payload)
+        payload_container.button(
+            label="Post to backend", on_click=lambda: post_payload(payload_body))
+        payload_container.write(payload_body)
