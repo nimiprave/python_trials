@@ -1,3 +1,12 @@
+# Sending Parameters
+# SQL statements are usually accompanied by data that is to be passed with the statement itself,
+# as we saw in the INSERT example previously. The Connection.execute() method therefore also accepts parameters, which are known as bound parameters.
+# A rudimentary example might be if we wanted to limit our SELECT statement only to rows that meet a certain criteria,
+# such as rows where the “y” value were greater than a certain value that is passed in to a function.
+# In order to achieve this such that the SQL statement can remain fixed and that the driver can properly sanitize the value,
+# we add a WHERE criteria to our statement that names a new parameter called “y”; the text() construct accepts these using a colon format “:y”.
+# The actual value for “:y” is then passed as the second argument to Connection.execute() in the form of a dictionary:
+
 # Sending parameters
 from sqlalchemy import create_engine
 from sqlalchemy import text
