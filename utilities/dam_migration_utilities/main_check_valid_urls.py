@@ -2,6 +2,10 @@ from rich.console import Console
 from rich.table import Table
 import os
 import requests
+#########################################################################################
+# Program to check the validity of URLs from a file and display their HTTP status codes.
+# Ensure the file 'urls.txt' exists in the current directory.
+#########################################################################################
 
 # create a table
 table = Table(title="URL List Status", style="bold blue")
