@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import subprocess
 from rich.console import Console
 from rich.table import Table
