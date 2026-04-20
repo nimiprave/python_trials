@@ -1,6 +1,14 @@
 import threading
 import time
 import random
+from rich.console import Console
+from rich.table import Table
+console = Console()
+
+# Creating the table for display
+table = Table()
+table.add_column("ThreadName")
+table.add_column("Description")
 
 
 def add_array(identifier):
@@ -14,5 +22,15 @@ if __name__ == "__main__":
     threads = []
     identifiers = ['first', 'second', 'third']
     for i in identifiers:
-        threading.Thread(target=add_array(i)).start()
+        # if args is not used
+        threads.append(threading.Thread(target=add_array, args=(i,)))
+        # threading.Thread(target=add_array(i)).start()
+
+    for thread in threads:
+        thread.start()
+
     print(f"Main Ended:")
+
+
+# I don;t understand the behavior. The Threads are exectuted in the same order.
+# and the main thread is exiting after all the threads are finished the processing.
